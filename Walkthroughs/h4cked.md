@@ -4,6 +4,7 @@ Find out what happened by analysing a .pcap file and hack your way back into the
 
 It seems like our machine got hacked by an anonymous threat actor. However, we are lucky to have a .pcap file from the attack. Can you determine what happened? Download the .pcap file and use Wireshark to view it.
 
+# Analyzing the Attack
 
 First, we analyze the pcap file provided in the room.
 
@@ -79,6 +80,8 @@ Following one of the TCP traces, I was able to get the commands executed by the 
 > Rootkit
 
 After everything, I was required to perform the activities the attacker did to achieve this level of access.
+
+# Recreating the Attack
 
 Moving into the shoes of the attacker, I was able to recreate the attack the performed by the attacker.
 
