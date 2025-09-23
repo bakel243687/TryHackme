@@ -56,6 +56,8 @@ The attack performed a reverse shell to gain access to the web server with admin
 
 Following one of the TCP traces, I was able to get the commands executed by the attacker to get admin access of the server
 
+![image alt](https://github.com/bakel243687/TryHackme/blob/c51358688faa4464f9a01f8bebe8d99b8e0ade89/Walkthroughs/Images/h4ckedshot_2025-09-18_22-50-51.png)
+
 > Which command did the attacker manually execute after getting a reverse shell?
 > whoami
 
@@ -64,6 +66,8 @@ Following one of the TCP traces, I was able to get the commands executed by the 
 
 > Which command did the attacker execute to spawn a new TTY shell?
 > python3 -c 'import pty; pty.spawn("/bin/bash")'
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/c51358688faa4464f9a01f8bebe8d99b8e0ade89/Walkthroughs/Images/h4ckedshot_2025-09-18_22-51-06.png)
 
 > Which command was executed to gain a root shell?
 > sudo su
@@ -78,16 +82,30 @@ After everything, I was required to perform the activities the attacker did to a
 
 Moving into the shoes of the attacker, I was able to recreate the attack the performed by the attacker.
 
-I ran Hydra against the FTP server with username jenny. I got a password which I used to login to the FTP server, downloaded the shell.php file using wget, edited it with my IP address and port number of the shell.php file using nano and then set up my netcat listening on port 777 (any port of your choice)
+![image alt](https://github.com/bakel243687/TryHackme/blob/c51358688faa4464f9a01f8bebe8d99b8e0ade89/Walkthroughs/Images/h4ckedshot_2025-09-18_22-44-42.png)
+I ran Hydra against the FTP server with username jenny. I got a password which I used to login to the FTP server. 
 
+I downloaded the shell.php file using wget, edited it with my IP address and port number of the shell.php file using nano and then set up my netcat listening on port 777 (any port of your choice)
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/c51358688faa4464f9a01f8bebe8d99b8e0ade89/Walkthroughs/Images/h4ckedshot_2025-09-19_03-14-55.png)
 Uploading the edited shell.php back to the FTP server using FTP PUT command.
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/c51358688faa4464f9a01f8bebe8d99b8e0ade89/Walkthroughs/Images/h4ckedshot_2025-09-19_03-17-04.png)
 
 After uploading, I continued with the steps the attacker took. I requested the shell.php on my terminal using curl
 
 This instantly executed the shell.php and gave me instant access to the web server. 
-
+![image alt](https://github.com/bakel243687/TryHackme/blob/c51358688faa4464f9a01f8bebe8d99b8e0ade89/Walkthroughs/Images/h4ckedshot_2025-09-19_03-19-54.png)
 Trying the same commands the attack did give the same output. We know we are on the right track to completely reproducing the attack. Just a little more
 
-We execute the command to spawn a new TTY shell which we use to gain sudo access using the password we got earlier from the Hydra bruteforce.
 
-From here, we can then access the flag from the /root/Reptile directory
+![image alt](https://github.com/bakel243687/TryHackme/blob/c51358688faa4464f9a01f8bebe8d99b8e0ade89/Walkthroughs/Images/h4ckedshot_2025-09-19_03-23-38.png)
+We execute the command to spawn a new TTY shell. we tried switching user using su which got us to jenny's
+
+We then performed sudo -l to lists the allowed and forbidden commands for the current user when using sudo. It provided information on what actions the user can perform with elevated privileges.
+
+![image alt](Walkthroughs/Images/h4ckedshot_2025-09-19_03-26-00.png)
+
+From here, switched to sudo and got access to the flag the /root/Reptile directory
+
+With that, the walkthrough is done
