@@ -6,4 +6,31 @@ It seems like our machine got hacked by an anonymous threat actor. However, we a
 
 
 First, we analyze the pcap file provided in the room.
+From the image provided above, we can see the different attempts to login to the FTP server by an attacker. How do we know? There is the constant connection request from one IP to another IP which has port 21 opened.
+
+With that, we can answer the questions in the room
+
+# The attacker is trying to log into a specific service. What service is this?
+# FTP
+
+In case you are not familiar with the answer to the next question, you can browse the creator of the tool. It is a tool used for brute force attempt of usernames and passwords
+
+There is a very popular tool by Van Hauser which can be used to brute force a series of services. What is the name of this tool? 
+Hydra
+
+Moving on, we can see in wireshark that the username is revealed and that is the user account the attacker is trying to bruteforce. No wam. We just need to find the password the attacker used to get in.
+How do we do this? We could use protocol follow in wireshark, by right clicking on the trace you want to follow and you would see the follow option among the list. In this case, we are following a trace that has login successful as that is the way we can tell the password used to login to the FTP server.
+
+Following the picture, we can see that the password is password123
+
+After knowing the password used to login, we can also see the commands executed on the server by the attacker. One of which is the present working directory (pwd) command. The output gave us /var/www/html
+
+We can then see all the other commands executed like the list command and then the execution of a file called shell.php. This action is suspicious.
+
+The execution of a file of that name is worth investigating. Moving on to analyzing the other traces, we see the execution of the shell.php which once we view it, we can see a line-based text data of over 192 lines. An interesting which once viewed, would expose the reverse-shell gotten from pentestmonkey.net
+The attack performed a reverse shell to gain access to the FTP server with admin priveleges. The did was done, reverse shell executed
+
+Following one of the TCP traces, I was able to get the commands executed by the attacker to get admin access of the server
+After everything, I was required to perform the activities the attacker did to achieve this level of access.
+Moving into the shoes of the attacker, I was able to
 
