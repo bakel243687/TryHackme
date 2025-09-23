@@ -6,6 +6,7 @@ It seems like our machine got hacked by an anonymous threat actor. However, we a
 
 
 First, we analyze the pcap file provided in the room.
+![image alt](https://github.com/bakel243687/TryHackme/blob/4bc0d38936dbebf60319643b4080517b0f2f6fd4/Walkthroughs/Images/h4cked1.png)
 From the image provided above, we can see the different attempts to login to the FTP server by an attacker. How do we know? There is the constant connection request from one IP to another IP which has port 21 opened.
 
 With that, we can answer the questions in the room
