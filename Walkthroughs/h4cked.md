@@ -18,22 +18,62 @@ With that, we can answer the questions in the room
 
 In case you are not familiar with the answer to the next question, you can browse the creator of the tool. It is a tool used for brute force attempt of usernames and passwords
 
-There is a very popular tool by Van Hauser which can be used to brute force a series of services. What is the name of this tool? 
-Hydra
+> There is a very popular tool by Van Hauser which can be used to brute force a series of services. What is the name of this tool? 
+> Hydra
 
 Moving on, we can see in wireshark that the username is revealed and that is the user account the attacker is trying to bruteforce. No wam. We just need to find the password the attacker used to get in.
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/7aacff01937cfc468de2b8f852720251ee3b71ef/Walkthroughs/Images/h4ckedshot_2025-09-23_02-03-53.png)
+
 How do we do this? We could use protocol follow in wireshark, by right clicking on the trace you want to follow and you would see the follow option among the list. In this case, we are following a trace that has login successful as that is the way we can tell the password used to login to the FTP server.
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/7aacff01937cfc468de2b8f852720251ee3b71ef/Walkthroughs/Images/h4cked2.png)
 
 Following the picture, we can see that the password is password123
 
+> The attacker is trying to log on with a specific username. What is the username?
+> jenny
+
+> What is the user's password?
+> password123
+
 After knowing the password used to login, we can also see the commands executed on the server by the attacker. One of which is the present working directory (pwd) command. The output gave us /var/www/html
+
+> What is the current FTP working directory after the attacker logged in?
+> /var/www/html
 
 We can then see all the other commands executed like the list command and then the execution of a file called shell.php. This action is suspicious.
 
+> The attacker uploaded a backdoor. What is the backdoor's filename?
+> shell.php
+
 The execution of a file of that name is worth investigating. Moving on to analyzing the other traces, we see the execution of the shell.php which once we view it, we can see a line-based text data of over 192 lines. An interesting which once viewed, would expose the reverse-shell gotten from pentestmonkey.net
-The attack performed a reverse shell to gain access to the FTP server with admin priveleges. The did was done, reverse shell executed
+
+> The backdoor can be downloaded from a specific URL, as it is located inside the uploaded file. What is the full URL?
+> http://pentestmonkey.net/tools/php-reverse-shell
+
+The attack performed a reverse shell to gain access to the web server with admin priveleges. The did was done, reverse shell executed
 
 Following one of the TCP traces, I was able to get the commands executed by the attacker to get admin access of the server
+
+> Which command did the attacker manually execute after getting a reverse shell?
+> whoami
+
+> What is the computer's hostname?
+> wir3
+
+> Which command did the attacker execute to spawn a new TTY shell?
+> python3 -c 'import pty; pty.spawn("/bin/bash")'
+
+> Which command was executed to gain a root shell?
+> sudo su
+
+> The attacker downloaded something from GitHub. What is the name of the GitHub project?
+> Reptile
+
+> The project can be used to install a stealthy backdoor on the system. It can be very hard to detect. What is this type of backdoor called?
+> Rootkit
+
 After everything, I was required to perform the activities the attacker did to achieve this level of access.
 
 Moving into the shoes of the attacker, I was able to recreate the attack the performed by the attacker.
