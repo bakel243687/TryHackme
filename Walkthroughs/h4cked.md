@@ -107,7 +107,7 @@ We execute the command to spawn a new TTY shell. we tried switching user using s
 
 We then performed sudo -l to lists the allowed and forbidden commands for the current user when using sudo. It provided information on what actions the user can perform with elevated privileges.
 
-![image alt](Walkthroughs/Images/h4ckedshot_2025-09-19_03-26-00.png)
+![image alt](https://github.com/bakel243687/TryHackme/blob/c51358688faa4464f9a01f8bebe8d99b8e0ade89/Walkthroughs/Images/h4ckedshot_2025-09-19_03-26-00.png)
 
 From here, switched to sudo and got access to the flag the /root/Reptile directory
 
