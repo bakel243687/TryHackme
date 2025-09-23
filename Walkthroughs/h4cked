@@ -1,0 +1,9 @@
+h4cked
+
+Find out what happened by analysing a .pcap file and hack your way back into the machine
+
+It seems like our machine got hacked by an anonymous threat actor. However, we are lucky to have a .pcap file from the attack. Can you determine what happened? Download the .pcap file and use Wireshark to view it.
+
+
+First, we analyze the pcap file provided in the room.
+
