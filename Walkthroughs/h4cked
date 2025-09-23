@@ -32,5 +32,19 @@ The attack performed a reverse shell to gain access to the FTP server with admin
 
 Following one of the TCP traces, I was able to get the commands executed by the attacker to get admin access of the server
 After everything, I was required to perform the activities the attacker did to achieve this level of access.
-Moving into the shoes of the attacker, I was able to
 
+Moving into the shoes of the attacker, I was able to recreate the attack the performed by the attacker.
+
+I ran Hydra against the FTP server with username jenny. I got a password which I used to login to the FTP server, downloaded the shell.php file using wget, edited it with my IP address and port number of the shell.php file using nano and then set up my netcat listening on port 777 (any port of your choice)
+
+Uploading the edited shell.php back to the FTP server using FTP PUT command.
+
+After uploading, I continued with the steps the attacker took. I requested the shell.php on my terminal using curl
+
+This instantly executed the shell.php and gave me instant access to the web server. 
+
+Trying the same commands the attack did give the same output. We know we are on the right track to completely reproducing the attack. Just a little more
+
+We execute the command to spawn a new TTY shell which we use to gain sudo access using the password we got earlier from the Hydra bruteforce.
+
+From here, we can then access the flag from the /root/Reptile directory
