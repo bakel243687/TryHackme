@@ -1,4 +1,4 @@
-h4cked
+# h4cked
 
 Find out what happened by analysing a .pcap file and hack your way back into the machine
 
