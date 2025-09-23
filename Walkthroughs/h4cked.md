@@ -13,8 +13,8 @@ From the image provided above, we can see the different attempts to login to the
 
 With that, we can answer the questions in the room
 
-# The attacker is trying to log into a specific service. What service is this?
-# FTP
+> The attacker is trying to log into a specific service. What service is this?
+> FTP
 
 In case you are not familiar with the answer to the next question, you can browse the creator of the tool. It is a tool used for brute force attempt of usernames and passwords
 
