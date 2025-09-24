@@ -5,22 +5,41 @@ Can you hack into the Year of the Rabbit box without falling down a hole?
 
 (Please ensure your volume is turned up!)
 
+Note: I had to start the machine again, so my target IP address changed
+
 I will not lie to you but this challenge was quite challenging couple up with the fact that netowrk was messing with me
 
 I started this challenge with nmap and gobuster which gave me promising results.
 
-![image alt]()
+![image alt](https://github.com/bakel243687/TryHackme/blob/7cabd2848e31350c5d344fa1af987f7f6c1b9d41/Challenges/Images/Screenshot_2025-09-24_08-19-57.png)
 nmap gave me open ports, ftp, ssh, http
 
+![image alt](https://github.com/bakel243687/TryHackme/blob/7cabd2848e31350c5d344fa1af987f7f6c1b9d41/Challenges/Images/Screenshot_2025-09-24_08-20-33.png)
 The gobuster result gave me a directory /assets which in its own gave me a step toward completion. The directory had two files, RickRolled.mp4 and style.css. The video called my attention, so went for it and was surprised to see a video I just watched from someone's whatsapp status not long ago.
 
-On viewing the style.css file, I got a lead. A very good one, I thought. It still led me back to the video but on watchin the video, I got a hint which was not originally part of the video. It said I was not looking in the right place and there was a Burp inbetween the short message. I was facing network issues but honestly, it didn't come to me initially that I should use Burpsuite. After a while away from the challenge, I used BurpSuite and noticed the site routes through a hidden directory before displaying the said video.
+![image alt](https://github.com/bakel243687/TryHackme/blob/7cabd2848e31350c5d344fa1af987f7f6c1b9d41/Challenges/Images/Screenshot_2025-09-24_08-20-51.png)
 
+![image alt](https://github.com/bakel243687/TryHackme/blob/7cabd2848e31350c5d344fa1af987f7f6c1b9d41/Challenges/Images/Screenshot_2025-09-24_08-21-21.png)
+On viewing the style.css file, I got a lead. A very good one, I thought. It still led me back to the video. 
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/7cabd2848e31350c5d344fa1af987f7f6c1b9d41/Challenges/Images/Screenshot_2025-09-24_08-21-42.png)
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/7cabd2848e31350c5d344fa1af987f7f6c1b9d41/Challenges/Images/Screenshot_2025-09-24_08-26-40.png)
+The video also came with a message which makes it take us back to the video in the /assets directory but with some added texts. On watching the video, I got a hint which was not originally part of the video. It said I was not looking in the right place and there was a Burp inbetween the short message. I was facing network issues but honestly, it didn't come to me initially that I should use Burpsuite. 
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/7cabd2848e31350c5d344fa1af987f7f6c1b9d41/Challenges/Images/Screenshot_2025-09-24_14-24-46.png)
+After a while away from the challenge, I used BurpSuite and noticed the site routes through a hidden directory before displaying the said video.
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/7cabd2848e31350c5d344fa1af987f7f6c1b9d41/Challenges/Images/Screenshot_2025-09-24_16-36-23.png)
 moving to the directory, I got a picture, hot_babe.png. Downloaded it and ran strings on it. it was promising
 
+![image alt](https://github.com/bakel243687/TryHackme/blob/7cabd2848e31350c5d344fa1af987f7f6c1b9d41/Challenges/Images/Screenshot_2025-09-24_16-42-08.png)
 got my user name for the ftpuser and the supposed password. Create a file with the password list given
 
+![image alt](https://github.com/bakel243687/TryHackme/blob/7cabd2848e31350c5d344fa1af987f7f6c1b9d41/Challenges/Images/Screenshot_2025-09-24_16-50-02.png)
 Running hydra with created password file against the ftp server.
+
+
 
 Got access to the ftp server with the credentials and dowloaded Eli's Creds with the get command
 
