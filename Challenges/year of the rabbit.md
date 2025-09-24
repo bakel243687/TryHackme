@@ -1,4 +1,4 @@
-YEAR OF THE RABBIT 🐇
+# YEAR OF THE RABBIT 🐇
 
 Let's have a nice gentle start to the New Year!
 Can you hack into the Year of the Rabbit box without falling down a hole?
@@ -9,7 +9,7 @@ Note: I had to start the machine again, so my target IP address changed
 
 I will not lie to you but this challenge was quite challenging couple up with the fact that netowrk was messing with me
 
-# Enumeration
+## Enumeration
 I started this challenge with nmap and gobuster which gave me promising results.
 
 ![image alt](https://github.com/bakel243687/TryHackme/blob/7cabd2848e31350c5d344fa1af987f7f6c1b9d41/Challenges/Images/Screenshot_2025-09-24_08-19-57.png)
