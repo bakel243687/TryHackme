@@ -9,6 +9,7 @@ Note: I had to start the machine again, so my target IP address changed
 
 I will not lie to you but this challenge was quite challenging couple up with the fact that netowrk was messing with me
 
+# Enumeration
 I started this challenge with nmap and gobuster which gave me promising results.
 
 ![image alt](https://github.com/bakel243687/TryHackme/blob/7cabd2848e31350c5d344fa1af987f7f6c1b9d41/Challenges/Images/Screenshot_2025-09-24_08-19-57.png)
@@ -58,6 +59,8 @@ Now, this is where it started messing with me big time. I am surprised, impresse
 You can read about it here: https://gist.github.com/roachhd/dce54bec8ba55fb17d3a
 Decode the code here: https://md5decrypt.net/en/Brainfuck-translator/
 
+# Exploitation
+
 ![image alt](https://github.com/bakel243687/TryHackme/blob/11108e8d870bf6d6643d0de93458d3c7b03de361/Challenges/Images/Screenshot_2025-09-24_16-56-55.png)
 
 After that, I logged into Eli's account via ssh using the just gotten credentials. I was welcomed with a message which gave me the feeling that there is more than one account on this machine. Going through the folders in the machine while forgetting I could just use the find command to look for the any file I wanted.
@@ -71,6 +74,8 @@ I had to look for the s3cr3t hiding place this guys are talking about
 Using the locate command, I found promising results which after using cat, I got the credentials for Gwendoline's account.
 
 Logged into the account and got the user flag from the user.txt file.
+
+# Privilege Escalation
 
 ![image alt](https://github.com/bakel243687/TryHackme/blob/11108e8d870bf6d6643d0de93458d3c7b03de361/Challenges/Images/Screenshot_2025-09-24_17-33-45.png)
 
