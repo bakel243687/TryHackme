@@ -59,7 +59,7 @@ Now, this is where it started messing with me big time. I am surprised, impresse
 You can read about it here: https://gist.github.com/roachhd/dce54bec8ba55fb17d3a
 Decode the code here: https://md5decrypt.net/en/Brainfuck-translator/
 
-# Exploitation
+## Exploitation
 
 ![image alt](https://github.com/bakel243687/TryHackme/blob/11108e8d870bf6d6643d0de93458d3c7b03de361/Challenges/Images/Screenshot_2025-09-24_16-56-55.png)
 
@@ -75,7 +75,7 @@ Using the locate command, I found promising results which after using cat, I got
 
 Logged into the account and got the user flag from the user.txt file.
 
-# Privilege Escalation
+## Privilege Escalation
 
 ![image alt](https://github.com/bakel243687/TryHackme/blob/11108e8d870bf6d6643d0de93458d3c7b03de361/Challenges/Images/Screenshot_2025-09-24_17-33-45.png)
 
