@@ -39,4 +39,8 @@ using the locate command, I found promising results which after using cat, I got
 
 logged into the account and got the user flag from the user.txt file.
 
-Now I have to gain root access. This is where I had to browse and research for the possible way fo doing this. I checked the sudo list
+Now I have to gain root access. This is where I had to browse and research for the possible way fo doing this. I checked the user privilege for gwendoline and after that, I checked the sudo version
+
+it was a version exploitable. I didn't know what exploit exactly, so I went to exploitdb and looked up the version. There were many possible exploits but the one that mactch the current scenario was the CVE-2019-14287.
+
+I performed the process to replicate the vulnerablity and got root access. On checking the root directory, I got the flag in a .txt file.
