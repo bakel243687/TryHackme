@@ -16,4 +16,19 @@ Session tokens and unique identifiers are used to maintain user sessions and tra
 
 Seeding refers to providing an initial value, known as a seed, to a secure cryptographic function to generate a sequence of random-looking numbers. While these secure functions produce numbers that appear random, the sequence is entirely determined by the seed, meaning the same seed will always result in the same sequence.
 
+Skipping to the practical aspect of the room
 
+I was given a login page to work with and this is where things get interesting. I was going to abuse the forgot password feature of the login page.
+
+So, I had to understand how the site forgot feature randomness works and with that, I was able to understand the randomness was not random. I got to know that the site sends a link to your email and this link had the userid and the time the token was generated as the token.
+
+> $stmt = $db->prepare("SELECT * FROM users WHERE username = :username");
+
+        $stmt->execute([':username' => $user_id]);
+
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user) {
+
+	    $token = $user_id . time();
+            $update = $db->prepare("UPDATE users SET reset_token = :token WHERE username = :username");
