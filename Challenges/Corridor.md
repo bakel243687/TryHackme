@@ -1,5 +1,7 @@
 # Corridor
 
+![image alt](https://github.com/bakel243687/TryHackme/blob/a46ab134093e60ba6722239e13e450c6effce34f/Challenges/Images/Screenshot_2025-10-22_16-26-22.png)
+
 Honestly, it took me a long time to figure the trick in this room and I feel bad but oh well, I learnt one or two things
 
 So, this is the description of the room
