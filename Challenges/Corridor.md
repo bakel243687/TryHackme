@@ -20,7 +20,7 @@ Looking into the source code of the website, I did not think much of the extra h
 
 Now, I went on and open burp suite, loaded the site in the burp browser and then I was greeted with the same corridor, on reloading the page, I got a different URL in my search bar and I knew that the endpoint was an encryption like it was said in the description. 
 
-The hash appeared like this http://<IP-ADDRESS>/hash
+The hash appeared like this http://IP-ADDRESS/hash
 
 Putting it in crackstation, I got number 4. A long time of thinking and brainstorming went by, I even trying going to all the hashed endpoint and I kept on appearing at on empty room. Painful thing. I'm even feeling bad writing this write up because I just messed up even though I solved it. haaaaaaaaaaaaa 😱 😠
 
@@ -35,4 +35,4 @@ What a life? I copied all the hashes into crackstation and then I ran the beauty
 
 On thinking back at the description, I knew I needed the md5 hash of 0. doing so, I can get back to where I started from. *Deep
 
-Now, with the hash, I insert it into the URL like this http://<IP-ADDRESS>/hash
+Now, with the hash, I insert it into the URL like this http://IP-ADDRESS/hash
