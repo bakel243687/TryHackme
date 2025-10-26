@@ -66,16 +66,39 @@ Quite a place we got there. You can go a look up the place and why it's interest
 
 Locate the sculpture; This task is nice and stressful as it took me time to find the person that took this image of the sculpture. It's easy to get the name of the sculpture by just browsing the image, but that of the photographer? Nahhh
 
+![image alt](https://github.com/bakel243687/TryHackme/blob/b55ec17ba17b143d62a777bfd8abc34a22746a73/Challenges/Images/Screenshot_2025-10-26_18-54-23.png)
 
+I went thorugh a lot, I wouldn't lie to you. And I also saw many walk-through on this stuff, but I must find it and I did. On a website called Visit Oslo. 
 
-I went thorugh a lot, I wouldn't lie to you. And I also saw many walk-through on this stuff, but I must find it and I did. On a website called Visit Oslo. I used the map there and searched up the sculputre, lo and behold, I got his name 
+![image alt](https://github.com/bakel243687/TryHackme/blob/b55ec17ba17b143d62a777bfd8abc34a22746a73/Challenges/Images/Screenshot_2025-10-26_18-55-41.png)
+
+I used the map there and searched up the sculputre, lo and behold, I got his name 
 
 
 ## Task 8
 
 ![image alt](https://github.com/bakel243687/TryHackme/blob/cda5d39afeafdf3f710d8d987947c08114da6e29/Challenges/Images/task8_1603365958159.png)
 
-.....and justice for all: Why are there different variations of Lady justice? Well, I don't know why but after putting the image into search, I got the exact image and the location with a news on which gave me the exact location of the court house and the name
+.....and justice for all: Why are there different variations of Lady justice? Well, I don't know why but after putting the image into search, I got the exact image, with a more interesting info
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/b55ec17ba17b143d62a777bfd8abc34a22746a73/Challenges/Images/Screenshot_2025-10-26_19-15-43.png)
+
+Got many news having the image of our very lady justice 😃
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/b55ec17ba17b143d62a777bfd8abc34a22746a73/Challenges/Images/Screenshot_2025-10-26_19-16-40.png)
+
+On viewing the one on bloomberg, I read the text under the image and got the info of the court house and the location. Bingo. 
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/b55ec17ba17b143d62a777bfd8abc34a22746a73/Challenges/Images/Screenshot_2025-10-26_19-20-07.png)
+
+Moving to google map, I inputted the location with a news on which gave me the exact location of the court house and the building directly opposite.
 
 ## Task 9
-The view from my hotel room: this one gave me headache as navigating the street on google map is quite tough and requires control. I was able to identify buildings in the surrounding and the take note of the environment. With that, when I used google map 360 feature to navigate the place, with perspective and my precise uncalculated calculation in my head, I was able identify the hotel.
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/b55ec17ba17b143d62a777bfd8abc34a22746a73/Challenges/Images/output-25-01-56-13.png)
+
+The view from my hotel room: this one gave me headache as navigating the street on google map is quite tough and requires control. 
+
+![image alt]()
+
+I was able to identify buildings in the surrounding and the take note of the environment. With that, when I used google map 360 feature to navigate the place, with perspective and my precise uncalculated calculation in my head, I was able identify the hotel.
