@@ -99,6 +99,12 @@ Moving to google map, I inputted the location with a news on which gave me the e
 
 The view from my hotel room: this one gave me headache as navigating the street on google map is quite tough and requires control. 
 
-![image alt]()
+![image alt](https://github.com/bakel243687/TryHackme/blob/d485a73460b825621666bb0a3875237db27b09fc/Challenges/Images/Screenshot_2025-10-26_22-11-40.png)
+I identified those buildings from the video and I knew I was close
 
-I was able to identify buildings in the surrounding and the take note of the environment. With that, when I used google map 360 feature to navigate the place, with perspective and my precise uncalculated calculation in my head, I was able identify the hotel.
+![image alt](https://github.com/bakel243687/TryHackme/blob/d485a73460b825621666bb0a3875237db27b09fc/Challenges/Images/Screenshot_2025-10-26_22-06-53.png)
+
+The environment is actually looking nice by the way. With that, when I used google map 360 feature to navigate the place, with perspective and my precise uncalculated calculation in my head, I was able identify the hotel.
+
+
+
