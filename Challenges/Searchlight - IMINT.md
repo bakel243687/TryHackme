@@ -105,6 +105,3 @@ I identified those buildings from the video and I knew I was close
 ![image alt](https://github.com/bakel243687/TryHackme/blob/d485a73460b825621666bb0a3875237db27b09fc/Challenges/Images/Screenshot_2025-10-26_22-06-53.png)
 
 The environment is actually looking nice by the way. With that, when I used google map 360 feature to navigate the place, with perspective and my precise uncalculated calculation in my head, I was able identify the hotel.
-
-
-
