@@ -1,9 +1,12 @@
 # PrintNightmare
+Description
 
+Per Microsoft, _"A remote code execution vulnerability exists when the Windows Print Spooler service improperly performs privileged file operations. An attacker who successfully exploited this vulnerability could run arbitrary code with SYSTEM privileges. An attacker could then install programs; view, change, or delete data; or create new accounts with full user rights".
+_
 ## CVE-2021-34527
-This vulnerability unlike the CVE-2021-1675, does not require local access to the machine, instead a network. The vulnerability is a simple one and can be easily remediated. CVE-2021-34527, also known as PrintNightmare is a remote code execution vulnerability which exist when print spooler service [MS-RPRN](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1) improperly performs privileged file operations. An attacke whos ssuccessfully exploits this vulnerability could run arbitrary code with SYSTEM privileges.
+This vulnerability unlike the CVE-2021-1675, does not require local access to the machine, instead a network. The vulnerability is a simple one and can be easily remediated. CVE-2021-34527, also known as PrintNightmare is a remote code execution vulnerability which exist when print spooler service [MS-RPRN](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rprn/d42db7d5-f141-4466-8f47-0a4be14e2fc1) improperly performs privileged file operations. An attacke whos successfully exploits this vulnerability could run arbitrary code with SYSTEM privileges.
 
-Yeah, I will make it sound more friendly. There is a service that runs on windows which manages printing when using a printter that is on your network. It makes using a printer in another room possible without having to go to the other room, something like that. Well, Having it enabled on windows 10, windows server 2012 and 2016 (versions before July 7,2021) are vulnerable to this. 
+Yeah, I will make it sound more friendly. There is a service that runs on windows which manages printing when using a printer that is on your network. It makes using a printer in another room possible without having to go to the other room, something like that. Well, Having it enabled on windows 10, windows server 2012 and 2016 (versions before July 7,2021) are vulnerable to this. 
 
 The vulnerability would require prior knowledge of your target and the network topology of the target system, in most cases the network is using an Active Directory. And that is what I would be using too.
 
