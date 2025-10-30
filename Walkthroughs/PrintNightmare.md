@@ -20,4 +20,14 @@ After which, I created the payload for this adventure using msfvenom. A basic pa
 
 Using metasploit, I configured the handler to the same configurations as the payload created earlier
 
-Now, I ran the handler as a job in the background while making the folder with my payload available as a fake SMB server (Sever Message Block). With this, I can ensure that our target machine is vulnerable by 
+Now, I ran the handler as a job in the background while making the folder with my payload available as a fake SMB server (Sever Message Block). 
+
+
+With this, I can ensure that our target machine is vulnerable by using impacket-rpcdump
+
+Now, we run the python code in the directory we cloned from GitHub. The python script may crash after Try 3 (It did crash for me)
+
+Once it's done or you see it crash after Try 3, then I confirmed our exploit success by checking our metasploit job that was running. You would see that a session has been opened with our target. 
+
+
+Yeah, we have exploited the vulnerability and we can decide to explore the windows machine by interacting with the session and then access the shell of the windows.
