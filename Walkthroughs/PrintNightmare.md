@@ -52,3 +52,11 @@ Once it's done or it crash after Try 3, then I confirmed the exploit success by 
 ![image alt](https://github.com/bakel243687/TryHackme/blob/de08d8a7561038e389327bcaa4ce9448710a4185/Walkthroughs/Images/printNightmare/Screenshot_2025-10-30_17-05-37.png)
 
 Yeah, we have exploited the vulnerability and we can decide to explore the windows machine by interacting with the session and then access the shell of the windows.
+
+
+I would have add how to identify this attack using logs on windows but I've not finished the room 
+
+## How to Remediate against this attack
+Just two remediations I have now,
+1. Update your devices
+2. Disable the print spooler service
