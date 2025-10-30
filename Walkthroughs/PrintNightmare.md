@@ -10,24 +10,40 @@ The vulnerability would require prior knowledge of your target and the network t
 ## Exploit
 Assuming there is a prior knowledge of the target, then we would go ahead to set up our attacking machine for the exploit.
 
-In my desktop, I created two folders one called pn and another called share (You can use any locations on your system, just remember where the needed documents are kept)
+[image alt](https://github.com/bakel243687/TryHackme/blob/de08d8a7561038e389327bcaa4ce9448710a4185/Walkthroughs/Images/printNightmare/Screenshot_2025-10-30_17-01-34.png)
 
-
+In my desktop, I created two folders one called pn and another called share (You can use any locations on your system, just remember where the needed documents are kept). 
 In the folder labelled pn, I clone the repo to the exploit I would be using.
 
+[image alt](https://github.com/bakel243687/TryHackme/blob/de08d8a7561038e389327bcaa4ce9448710a4185/Walkthroughs/Images/printNightmare/Screenshot_2025-10-30_17-02-24.png)
 
 After which, I created the payload for this adventure using msfvenom. A basic payload reverse tcp payload
 
+[image alt](https://github.com/bakel243687/TryHackme/blob/de08d8a7561038e389327bcaa4ce9448710a4185/Walkthroughs/Images/printNightmare/Screenshot_2025-10-30_17-02-51.png)
+
 Using metasploit, I configured the handler to the same configurations as the payload created earlier
+
+
+[image alt](https://github.com/bakel243687/TryHackme/blob/de08d8a7561038e389327bcaa4ce9448710a4185/Walkthroughs/Images/printNightmare/Screenshot_2025-10-30_17-03-25.png)[image alt](https://github.com/bakel243687/TryHackme/blob/de08d8a7561038e389327bcaa4ce9448710a4185/Walkthroughs/Images/printNightmare/Screenshot_2025-10-30_17-03-46.png)
 
 Now, I ran the handler as a job in the background while making the folder with my payload available as a fake SMB server (Sever Message Block). 
 
+[image alt](https://github.com/bakel243687/TryHackme/blob/de08d8a7561038e389327bcaa4ce9448710a4185/Walkthroughs/Images/printNightmare/Screenshot_2025-10-30_17-04-02.png)
 
 With this, I can ensure that our target machine is vulnerable by using impacket-rpcdump
 
+[image alt](https://github.com/bakel243687/TryHackme/blob/de08d8a7561038e389327bcaa4ce9448710a4185/Walkthroughs/Images/printNightmare/Screenshot_2025-10-30_17-04-27.png)[image alt](https://github.com/bakel243687/TryHackme/blob/de08d8a7561038e389327bcaa4ce9448710a4185/Walkthroughs/Images/printNightmare/Screenshot_2025-10-30_17-04-50.png)
+
 Now, we run the python code in the directory we cloned from GitHub. The python script may crash after Try 3 (It did crash for me)
+
+[image alt](https://github.com/bakel243687/TryHackme/blob/de08d8a7561038e389327bcaa4ce9448710a4185/Walkthroughs/Images/printNightmare/Screenshot_2025-10-30_17-05-02.png)
+
+Your smb server would have afeedback like this
+
+[image alt](https://github.com/bakel243687/TryHackme/blob/de08d8a7561038e389327bcaa4ce9448710a4185/Walkthroughs/Images/printNightmare/Screenshot_2025-10-30_17-05-18.png)
 
 Once it's done or you see it crash after Try 3, then I confirmed our exploit success by checking our metasploit job that was running. You would see that a session has been opened with our target. 
 
+[image alt](https://github.com/bakel243687/TryHackme/blob/de08d8a7561038e389327bcaa4ce9448710a4185/Walkthroughs/Images/printNightmare/Screenshot_2025-10-30_17-05-37.png)
 
 Yeah, we have exploited the vulnerability and we can decide to explore the windows machine by interacting with the session and then access the shell of the windows.
