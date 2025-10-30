@@ -10,7 +10,7 @@ The vulnerability would require prior knowledge of your target and the network t
 ## Exploit
 Assuming there is a prior knowledge of the target, then we would go ahead to set up our attacking machine for the exploit.
 
-[image alt](https://github.com/bakel243687/TryHackme/blob/de08d8a7561038e389327bcaa4ce9448710a4185/Walkthroughs/Images/printNightmare/Screenshot_2025-10-30_17-01-34.png)
+[alt image](https://github.com/bakel243687/TryHackme/blob/de08d8a7561038e389327bcaa4ce9448710a4185/Walkthroughs/Images/printNightmare/Screenshot_2025-10-30_17-01-34.png)
 
 In my desktop, I created two folders one called pn and another called share (You can use any locations on your system, just remember where the needed documents are kept). 
 In the folder labelled pn, I clone the repo to the exploit I would be using.
