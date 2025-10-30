@@ -6,7 +6,7 @@ This means we could get a shell as root
 
 This exploit works even if we don't have any sudo permission
 
-Saleem Rashid (saleemrashid) wrote an exploit in C which I used in this room.
+Saleem Rashid [saleemrashid](https://github.com/saleemrashid/sudo-cve-2019-18634) wrote an exploit in C which I used in this room.
 
 ## Exploit
 
