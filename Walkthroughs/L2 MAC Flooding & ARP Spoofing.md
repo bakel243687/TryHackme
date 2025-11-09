@@ -1,4 +1,4 @@
-# L2 MAC Flooding & ARP Spoofing
+[# L2 MAC Flooding & ARP Spoofing
 
 Spent last night on some rooms and this one was a very intriguing one. let me see if I can make this write up look clear, nice and short
 
@@ -97,3 +97,4 @@ Having done all this, I can now run the below command to execute the ettercap al
 > ettercap -T -i eth1 -M arp -F whoami.ef
 
 Now, we can close quit the ettercap after a while and enjoy the shell result. 
+](https://github.com/bakel243687/TryHackme/blob/cb8d5258db3faf2d69014776017e5cae1c4930db/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_01-25-01.png)
