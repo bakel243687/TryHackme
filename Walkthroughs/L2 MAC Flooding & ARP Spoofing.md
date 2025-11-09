@@ -1,6 +1,6 @@
 # L2 MAC Flooding & ARP Spoofing
 
-Spent last night on some rooms and this one was a very intriguing one. let me see if I can make this write up look clear, nice and short
+Spent Saturday night on some rooms and this one was a very intriguing one. let me see if I can make this write up look clear, nice and short
 
 ## Intro
 
