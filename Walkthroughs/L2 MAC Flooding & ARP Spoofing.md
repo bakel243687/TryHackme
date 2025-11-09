@@ -17,6 +17,8 @@ Dual homed host simply means it is connected to two or more networks.
 
 ### Network Discovery
 
+![image alt](https://github.com/bakel243687/TryHackme/blob/cb8d5258db3faf2d69014776017e5cae1c4930db/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_00-45-02.png)
+
 So, upon logging into the target machine, I checked the network interface using ifconfig and I got the IP address of our target network and then did our network discovery with nmap, but unlike our usual port scan, we are only trying to discover host on the network so I made use of the below flag
 > nmap -sn <IP-ADDRESS>
 
@@ -25,11 +27,27 @@ Upon scan completion, I discovered two other machines on the network, Alice and 
 ### Network Sniffing
 Now, Inorder to get info on the other machines on the network, I made use of tcpdump to capture the packets of the other machines and got Bob sending ICMP packets to Eve which is the machine I ssh into.
 
+![image alt](https://github.com/bakel243687/TryHackme/blob/cb8d5258db3faf2d69014776017e5cae1c4930db/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_00-54-55.png)
+
+Using the command, tcpdump -A -i eth1 -w /tmp/tcpdump.pcap, I can sniff packets from the network and store as a .pcap file for use in wireshark.
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/cb8d5258db3faf2d69014776017e5cae1c4930db/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_00-55-08.png)
+
+With the .pcap file created with the packets in it, I can share it to my own kali machine using scp command.
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/cb8d5258db3faf2d69014776017e5cae1c4930db/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_00-55-20.png) 
+![image alt](https://github.com/bakel243687/TryHackme/blob/cb8d5258db3faf2d69014776017e5cae1c4930db/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_00-55-28.png)
+_image: pakets on wireshark_
+
 We've got a little info on the activities on the network but it's not enough to take action. This is where we introduce ettercap, it is an open source network security tool capable of sniffing of live connections, content filtering on the fly, and many other features. It supports active and passive dissection of many protocols (including ciphered protocols) and includes many features for network and host analysis.
 
 ## MACHINE 2
 
 ### Sniffing
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/cb8d5258db3faf2d69014776017e5cae1c4930db/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_01-25-01.png)
+
+The first tool used here is macof which is a quite noisy but 
 
 The use of ettercap as shown below is noisy and will be easily detected in a secured system.
 Loading up the second target machine. It's still the same machines and hostnames on the network, but different IP address and open ports
