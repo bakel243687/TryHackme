@@ -4,7 +4,38 @@ Spent last night on some rooms and this one was a very intriguing one. let me se
 
 Intro
 The room walks thrrough the OSI model layer 2 network switches, MAC tables, Address Resolution Protocol (ARP) and Wireshark. A very interesting room
-So, we are given a target machine Ip address, and you know how this goes, right? Nah follow along
+So, we are given two target machine Ip address, and you know how this goes, right? Nah follow along. Machine one is for understanding the network flow and machine two is for utilizing ARP spoofing
 
+
+Machine 1
 Initial Access
 Assuming we have attained initial access and escalated privilege to root on a linux mahcine and during your OS enumeration, you realize it is a dual homed host. Mate, we definitely have to check it out because there are chances we could move laterally
+
+Dual homed host simply means it is connected to two or more networks.
+
+Network Discovery
+So, upon logging into the target machine, I checked the network interface using ifconfig and I got the IP address of our target network and then did our network discovery with nmap, but unlike our usual port scan, we are only trying to discover host on the network so I made use of the below flag
+> nmap -sn <IP-ADDRESS>
+
+Upon scan completion, I discovered two other machines on the network, Alice and Bob. I performed a port scan on both machines and got the open ports on these machines
+
+Network Sniffing
+Now, Inorder to get info on the other machines on the network, I made use of tcpdump to capture the packets of the other machines and got Bob sending ICMP packets to Eve which is the machine I ssh into.
+
+We've got a little info on the activities on the network but it's not enough to take action. This is where we introduce ettercap, it is an open source network security tool capable of sniffing of live connections, content filtering on the fly, and many other features. It supports active and passive dissection of many protocols (including ciphered protocols) and includes many features for network and host analysis.
+
+MACHINE 2
+Loading up the second target machine. It's still the same machines and hostnames on the network, but different IP address and open ports
+
+On performing an nmap scan, I used the same nmap -sn just like before. Then did port scan for both Alice and Bob machines, got port 80 open on Bob's and port 4444 on Alice's machine.
+
+Utilizing ettercap, I used the below command to 
+> ettercap -T -i eth1 -M arp
+
+- -T flag give us a text only interface
+- -i flag give us the option to select the network interface and in our case, its eth1
+- -M is the man-in-the-middle attack and together with arp specifies arp poisoning mitm attack
+
+The result of the sniffing using ettercap gave me this
+
+Discovered the content of Bob's http service and also got info on a reverse shell. The content of the http server can only be accessed with authentication which I saw in the result of this ettercap arp spoofing. >admin:s3cr3t_P4zz Picked up the commands of the shell and the results of the commands including the ls command which had our root.txt file on the result.
