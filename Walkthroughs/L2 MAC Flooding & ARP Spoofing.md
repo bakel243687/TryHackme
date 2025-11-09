@@ -1,4 +1,4 @@
-[# L2 MAC Flooding & ARP Spoofing
+# L2 MAC Flooding & ARP Spoofing
 
 Spent last night on some rooms and this one was a very intriguing one. let me see if I can make this write up look clear, nice and short
 
@@ -47,24 +47,40 @@ We've got a little info on the activities on the network but it's not enough to 
 
 ![image alt](https://github.com/bakel243687/TryHackme/blob/cb8d5258db3faf2d69014776017e5cae1c4930db/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_01-25-01.png)
 
-The first tool used here is macof which is a quite noisy but 
+Before jumping into ettercap, I first made use of macof alongside tcpdump to flood the switch and capture the packets. Running the two commands below simultaneously.
+> tcpdump -A -i eth1 -w /tmp/tcpdump2.pcap
+> macof -i eth1
 
 The use of ettercap as shown below is noisy and will be easily detected in a secured system.
 Loading up the second target machine. It's still the same machines and hostnames on the network, but different IP address and open ports
 
+![image alt](https://github.com/bakel243687/TryHackme/blob/cac80fc0999b184c5b23d0cd5a756df3470c466f/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_01-52-03.png)
+
 On performing an nmap scan, I used the same nmap -sn just like before. Then did port scan for both Alice and Bob machines, got port 80 open on Bob's and port 4444 on Alice's machine.
 
-Utilizing ettercap, I used the below command to 
+![image alt](https://github.com/bakel243687/TryHackme/blob/cac80fc0999b184c5b23d0cd5a756df3470c466f/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_01-52-15.png)
+_The above image shows that the web server requires authentication to access_
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/cac80fc0999b184c5b23d0cd5a756df3470c466f/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_01-52-24.png)
+
+Utilizing ettercap, I used the below command
 > ettercap -T -i eth1 -M arp
 
 - -T flag give us a text only interface
 - -i flag give us the option to select the network interface and in our case, its eth1
 - -M is the man-in-the-middle attack and together with arp specifies arp poisoning mitm attack
 
+![image alt](https://github.com/bakel243687/TryHackme/blob/cac80fc0999b184c5b23d0cd5a756df3470c466f/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_01-52-37.png)
+![image alt](https://github.com/bakel243687/TryHackme/blob/cac80fc0999b184c5b23d0cd5a756df3470c466f/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_01-52-45.png)
+
 The result of the sniffing using ettercap gave me this 
 
 Discovered the content of Bob's http service and also got info on a reverse shell. The content of the http server can only be accessed with authentication which I saw in the result of this ettercap arp spoofing. Picked up the commands of the shell and the results of the commands including the ls command which had our root.txt file on the result as well as the username and password to login to the website
 > admin:s3cr3t_P4zz
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/cac80fc0999b184c5b23d0cd5a756df3470c466f/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_01-54-25.png)
+
+With the username and password to access the web server I used curl on the werver as in the image above
 
 ### Manipulation
 
@@ -79,11 +95,15 @@ The plan is to intercept the commands on the reverse shell and change one of the
 
 I made use of etterfilter script and below is the code
 
-> if (ip.proto == TCP && tcp.src == 4444 && search(DATA.data, "whoami") ) {
->   log(DATA.data, "/root/ettercap.log");
->   replace("whoami", "cat root/root.txt" );
->   msg("###### ETTERFILTER: substituted 'whoami' with reverse shell. ######\n");
-> }
+```Etterfilter script
+if (ip.proto == TCP && tcp.src == 4444 && search(DATA.data, "whoami") ) {
+  log(DATA.data, "/root/ettercap.log");
+  replace("whoami", "cat root/root.txt" );
+  msg("###### ETTERFILTER: substituted 'whoami' with reverse shell. ######\n");
+}
+```
+
+![image alt](https://github.com/bakel243687/TryHackme/blob/cac80fc0999b184c5b23d0cd5a756df3470c466f/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_02-19-33.png)
 
 I compiled the .ecf file adn started up my netcat listener ready to manipulate the commands with 
 > etterfilter whoami.ecf -o whoami.ef
@@ -93,8 +113,9 @@ Then I allowed traffic from the eth1 using the below rule
 > ufw allow in on eth1 from 192.168.12.20 to 192.168.12.66 port 6666 proto tcp
 or better still you can disable  your firewall, ufw
 
+![image alt](https://github.com/bakel243687/TryHackme/blob/cac80fc0999b184c5b23d0cd5a756df3470c466f/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_02-19-42.png)
+
 Having done all this, I can now run the below command to execute the ettercap along with the etterfilter file 
 > ettercap -T -i eth1 -M arp -F whoami.ef
 
 Now, we can close quit the ettercap after a while and enjoy the shell result. 
-](https://github.com/bakel243687/TryHackme/blob/cb8d5258db3faf2d69014776017e5cae1c4930db/Walkthroughs/Images/L2%20MAC%20Flooding%20%26%20ARP%20Spoofing/Screenshot_2025-11-09_01-25-01.png)
