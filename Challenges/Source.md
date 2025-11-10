@@ -31,5 +31,6 @@ As usual, I read the info for the exploit before utilizing it.
 I set up the patload with my IP address (LHOST) and the target IP (RHOST), after which I encountered an error which I fixed by enabling Secured Socket Layer (SSL). With this, I ran the exploit and gained root access to the machine.
 
 ![image alt](https://github.com/bakel243687/TryHackme/blob/f8c63073244fb2e6eefac8e58e487aa08af26834/Challenges/Images/source/Screenshot_2025-10-23_23-23-59.png)
+
 Now, we can explore the target machine as root.
 
